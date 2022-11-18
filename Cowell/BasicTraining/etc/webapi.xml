@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/cowell-basictraining/students" method="GET">
+        <service class="Cowell\BasicTraining\Api\StudentsManagementInterface" method="getStudents"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/cowell-basictraining/students" method="POST">
+        <service class="Cowell\BasicTraining\Api\StudentsManagementInterface" method="postStudents"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/cowell-basictraining/students" method="PUT">
+        <service class="Cowell\BasicTraining\Api\StudentsManagementInterface" method="putStudents"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/cowell-basictraining/students" method="DELETE">
+        <service class="Cowell\BasicTraining\Api\StudentsManagementInterface" method="deleteStudents"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/cowell-basictraining/student" method="POST">
+        <service class="Cowell\BasicTraining\Api\StudentRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/cowell-basictraining/student/search" method="GET">
+        <service class="Cowell\BasicTraining\Api\StudentRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/cowell-basictraining/student/:studentId" method="GET">
+        <service class="Cowell\BasicTraining\Api\StudentRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/cowell-basictraining/student/:studentId" method="PUT">
+        <service class="Cowell\BasicTraining\Api\StudentRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Cowell_BasicTraining::Student_update"/>
+        </resources>
+    </route>
+    <route url="/V1/cowell-basictraining/student/:studentId" method="DELETE">
+        <service class="Cowell\BasicTraining\Api\StudentRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="self"></resource>
+        </resources>
+    </route>
+</routes>
