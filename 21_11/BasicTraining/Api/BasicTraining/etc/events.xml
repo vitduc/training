@@ -1,0 +1,9 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_model_service_quote_submit_before">
+        <observer name="cowell_basictraining_sales_model_service_quote_submit_before" instance="Cowell\BasicTraining\Observer\SaveOrderBeforeSalesModelQuoteObserver" />
+    </event>
+
+    <event name="sales_quote_item_set_product">
+        <observer name="cowell_basictraining_sales_quote_item_set_product" instance="Cowell\BasicTraining\Observer\SetItemCustomAttribute" />
+    </event>
+</config>

@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="cowell_basictraining_training_listing_data_source" xsi:type="string">Cowell\BasicTraining\Model\ResourceModel\Training\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Cowell\BasicTraining\Model\ResourceModel\Training\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">students</argument>
+            <argument name="resourceModel" xsi:type="string">Cowell\BasicTraining\Model\ResourceModel\Student</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Cowell\BasicTraining\StudentImageUpload" type="Cowell\BasicTraining\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">catalog/tmp/category</argument>
+            <argument name="basePath" xsi:type="string">catalog/category</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="png" xsi:type="string">image/png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Cowell\BasicTraining\Controller\Adminhtml\Training\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Cowell\BasicTraining\StudentImageUpload</argument>
+        </arguments>
+    </type>
+    <preference for="Cowell\BasicTraining\Api\StudentRepositoryInterface" type="Cowell\BasicTraining\Model\StudentRepository"/>
+    <preference for="Cowell\BasicTraining\Api\Data\StudentInterface" type="Cowell\BasicTraining\Model\Student"/>
+    <preference for="Cowell\BasicTraining\Api\Data\StudentSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Cowell\BasicTraining\Api\StudentsManagementInterface" type="Cowell\BasicTraining\Model\StudentsManagement"/>
+
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="commandexample_somecommand" xsi:type="object">Cowell\BasicTraining\Console\Command\SomeCommand</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Cowell\BasicTraining\Model\StudentRepository">
+        <plugin name="Cowell_BasicTraining_Plugin_ProductPlugin" type="Cowell\BasicTraining\Plugin\ProductPlugin" sortOrder="10" disabled="false"/>
+    </type>
+
+    <type name="Magento\Checkout\Model\Cart">
+        <plugin name="Cowell_BasicTraining_Plugin_Custom_Total" type="Cowell\BasicTraining\Plugin\CustomTotal" sortOrder="20" disabled="false"/>
+    </type>
+
+    <type name="Magento\Quote\Model\Quote\Item\ToOrderItem">
+        <plugin name="Cowell_BasicTraining_Plugin_Shipping_Fee" type="Cowell\BasicTraining\Plugin\ShippingFee" sortOrder="30" disabled="false"/>
+
+    </type>
+
+</config>
