@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<config>
-    <section name="quote">
-        <group name="totals">
-            <item name="custom_discount" instance="Cowell\BasicTraining\Model\Totals\Custom" sort_order="300"/>
-        </group>
-    </section>
-</config>
